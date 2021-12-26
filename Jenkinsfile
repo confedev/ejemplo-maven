@@ -10,7 +10,7 @@ pipeline {
         stage("Compile Code"){
             steps {
                 script {
-                sh "Echo 'Compile Code'"
+                sh "echo 'Compile Code'"
                 sh "./mvnw clean compile -e"
                 }
             }
@@ -18,7 +18,7 @@ pipeline {
         stage("Test Code"){
             steps {
                 script {
-                sh "Echo 'Test Code'"
+                sh "echo 'Test Code'"
                 sh "./mvnw clean test -e"
                 }
             }
@@ -26,7 +26,7 @@ pipeline {
         stage("Jar Code"){
             steps {
                 script {
-                sh "Echo 'Jar Code'"
+                sh "echo 'Jar Code'"
                 sh "./mvnw clean package -e"
                 }
             }
@@ -34,7 +34,7 @@ pipeline {
         stage("Run Jar"){
             steps {
                 script {
-                sh "Echo 'Run Jar'"
+                sh "echo 'Run Jar'"
                 sh "./mvnw spring-boot:run"
                 }
             }
@@ -42,7 +42,7 @@ pipeline {
         stage("Testing Application"){
             steps {
                 script {
-                sh "Echo 'Testing application'"
+                sh "echo 'Testing application'"
                 sh "curl -X GET 'http://localhost:8081/rest/mscovid/test?msg=testing'"
                 }
             }
