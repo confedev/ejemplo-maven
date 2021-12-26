@@ -7,31 +7,38 @@ pipeline {
     agent any
     stages {
 
-        stage("paso 1"){
+        stage("Compile Code"){
             steps {
                 script {
-                sh "echo 'Hello, World Usach 2021!'"
+                sh "./mvnw.cmd clean compile -e"
                 }
             }
         }
-        stage("paso 2"){
+        stage("Test Code"){
             steps {
                 script {
-                sh "echo 'Compile Code!'"
+                sh "./mvnw.cmd clean test -e"
                 }
             }
         }
-        stage("paso 3"){
+        stage("Jar Code"){
             steps {
                 script {
-                sh "echo 'Test Code!'"
+                sh "./mvnw.cmd clean package -e"
                 }
             }
         }
-        stage("paso 4"){
+        stage("Run Jar"){
             steps {
                 script {
-                sh "echo 'Build .Jar!'"
+                sh "./mvnw.cmd spring-boot:run "
+                }
+            }
+        }
+        stage("Testing Application"){
+            steps {
+                script {
+                sh "curl -X GET 'http://localhost:8081/rest/mscovid/test?msg=testing'"
                 }
             }
         }
