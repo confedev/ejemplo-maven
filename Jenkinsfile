@@ -11,7 +11,7 @@ pipeline {
             steps {
                 script {
                 sh "Echo 'Compile Code'"
-                sh "./mvnw.cmd clean compile -e"
+                sh "./mvnw clean compile -e"
                 }
             }
         }
@@ -19,7 +19,7 @@ pipeline {
             steps {
                 script {
                 sh "Echo 'Test Code'"
-                sh "./mvnw.cmd clean test -e"
+                sh "./mvnw clean test -e"
                 }
             }
         }
@@ -27,7 +27,7 @@ pipeline {
             steps {
                 script {
                 sh "Echo 'Jar Code'"
-                sh "./mvnw.cmd clean package -e"
+                sh "./mvnw clean package -e"
                 }
             }
         }
@@ -35,7 +35,7 @@ pipeline {
             steps {
                 script {
                 sh "Echo 'Run Jar'"
-                sh "./mvnw.cmd spring-boot:run"
+                sh "./mvnw spring-boot:run"
                 }
             }
         }
