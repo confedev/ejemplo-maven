@@ -39,14 +39,6 @@ pipeline {
                 }
             }
         }
-        stage("Testing Application"){
-            steps {
-                script {
-                    sh "echo 'Testing application'"
-                    sh "curl -X GET 'http://localhost:8081/rest/mscovid/test?msg=testing'"
-                }
-            }
-        }
     }
     post {
         always {
