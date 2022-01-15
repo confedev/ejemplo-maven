@@ -16,10 +16,8 @@ pipeline {
         }
         stage("Paso 2: sonar"){
             steps {
-                script {
-                sh "echo 'SonarQube'"
-                // Run Maven on a Unix agent.
-                sh "mvn clean verify sonar:sonar -Dsonar.projectKey=ejemplo-maven"
+                withSonarQubeEnv('sonarqube') {
+                    sh "mvn clean verify sonar:sonar"
                 }
             }
         }
