@@ -14,7 +14,16 @@ pipeline {
                 }
             }
         }
-        stage("Paso 2: Testear"){
+        stage("Paso 2: sonar"){
+            steps {
+                script {
+                sh "echo 'SonarQube'"
+                // Run Maven on a Unix agent.
+                sh "mvn clean verify sonar:sonar -Dsonar.projectKey=ejemplo-maven"
+                }
+            }
+        }
+        stage("Paso 3: Testear"){
             steps {
                 script {
                 sh "echo 'Test Code!'"
@@ -23,7 +32,7 @@ pipeline {
                 }
             }
         }
-        stage("Paso 3: Build .Jar"){
+        stage("Paso 4: Build .Jar"){
             steps {
                 script {
                 sh "echo 'Build .Jar!'"
