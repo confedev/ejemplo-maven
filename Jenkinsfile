@@ -5,7 +5,7 @@ def jsonParse(def json) {
 pipeline {
     agent any
     stages {
-        stage("Paso 1: Compliar"){
+        stage("Paso 1: Compilar"){
             steps {
                 script {
                 sh "echo 'Compile Code!'"
@@ -14,14 +14,7 @@ pipeline {
                 }
             }
         }
-        stage("Paso 2: sonar"){
-            steps {
-                withSonarQubeEnv('sonarqube') {
-                    sh "mvn clean verify sonar:sonar -Dsonar.projectKey=ejemplo-maven"
-                }
-            }
-        }
-        stage("Paso 3: Testear"){
+        stage("Paso 2: Testear"){
             steps {
                 script {
                 sh "echo 'Test Code!'"
@@ -30,7 +23,7 @@ pipeline {
                 }
             }
         }
-        stage("Paso 4: Build .Jar"){
+        stage("Paso 3: Build .Jar"){
             steps {
                 script {
                 sh "echo 'Build .Jar!'"
@@ -42,6 +35,15 @@ pipeline {
                 //record the test results and archive the jar file.
                 success {
                     archiveArtifacts artifacts:'build/*.jar'
+                }
+            }
+        }
+        stage("Paso 4: Análisis SonarQube"){
+            steps {
+                withSonarQubeEnv('sonarqube') {
+                    sh "echo 'Calling sonar Service in another docker container!'"
+                    // Run Maven on a Unix agent to execute Sonar.
+                    sh 'mvn clean verify sonar:sonar -Dsonar.projectKey=ejemplo-maven'
                 }
             }
         }
