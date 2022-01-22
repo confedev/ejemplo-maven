@@ -93,9 +93,9 @@ pipeline {
                 sh 'nohup bash java -jar DevOpsUsach2020-0.0.1.jar & >/dev/null'
             }
         }
-        stage("Paso 7: Curl: Dormir(Esperar 30sg)"){
+        stage("Paso 7: Curl: Dormir(Esperar 60sg)"){
             steps {
-                sh "sleep 30 && curl -X GET 'http://localhost:8081/rest/mscovid/test?msg=testing'"
+                sh "sleep 60 && curl -X GET 'http://localhost:8081/rest/mscovid/test?msg=testing'"
             }
         }
         stage("Paso 8: Subir nueva Version"){
