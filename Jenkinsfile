@@ -9,6 +9,16 @@ pipeline {
         NEXUS_PASSWORD     = credentials('token-nexus-curl-passadmin')
     }
     stages {
+        stage("Paso 0: Download and checkout"){
+            steps {
+                checkout(
+                    [$class: 'GitSCM',
+                    //Acá reemplazar por el nonbre de branch
+                    branches: [[name: "feature-nexus" ]],
+                    //Acá reemplazar por su propio repositorio
+                    userRemoteConfigs: [[url: 'https://github.com/confedev/ejemplo-maven.git']]])
+            }
+        }
         stage("Paso 1: Compliar"){
             steps {
                 script {
