@@ -6,6 +6,22 @@ def jsonParse(def json) {
 pipeline {
     agent any
     stages {
+        
+        stage("Print branch_name"){
+            steps {
+                script {
+                    sh "echo 'branch name ${BRANCH_NAME}'"
+                }
+            }
+        }
+        
+        stage("Print env"){
+            steps {
+                script {
+                    sh 'printenv'
+                }
+            }
+        }
 
         stage("Compile Code"){
             steps {
